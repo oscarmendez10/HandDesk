@@ -193,7 +193,7 @@ footer, .social-buttons a {
 }
 /* Esto tiene que ganarle al inline style del JS */
 .card {
-    transform: scale(0.9) !important; /* Forzamos el tamaño pequeño inicial */
+    transform: scale(1.0) !important; /* Forzamos el tamaño pequeño inicial */
     transition: transform 0.5s var(--ease-expo) !important;
 }
 

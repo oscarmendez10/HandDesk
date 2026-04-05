@@ -1,52 +1,75 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
+/* ==========================================================================
+   DESIGN TOKENS
+   ========================================================================== */
+
 :root {
-    --rh-red: #EE0000;
-    --rh-red-alt: #CC0000;
-    --rh-dark: #151515;
-    --rh-gray: #f0f0f0;
-    --terminal-black: #1a1a1a;
-    --text-main: #212121;
-    --text-muted: #4f5254;
-    --card-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    --card-shadow-hover: 0 12px 40px rgba(0,0,0,0.15);
-    --transition-standard: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    --rh-red:        #EE0000;
+    --rh-red-alt:    #CC0000;
+    --rh-red-deep:   #8a0000;
+    --rh-dark:       #151515;
+    --rh-gray:       #f0f0f0;
+    --terminal-bg:   #1a1a1a;
+    --text-main:     #212121;
+    --text-muted:    #4f5254;
+
+    --card-shadow:       0 4px 20px rgba(0, 0, 0, 0.08);
+    --card-shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.18);
+    --ease-out-expo:     cubic-bezier(0.165, 0.84, 0.44, 1);
+    --transition:        all 0.4s var(--ease-out-expo);
 }
 
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-    background-color: #ffffff !important;
-    color: var(--text-main) !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #ffffff;
+    color: var(--text-main);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
 }
 
-h1, h2, h3, h4, h5, h6, .template-title-example {
-    font-family: 'Inter', sans-serif !important;
-    font-weight: 800 !important;
-    color: var(--rh-dark) !important;
-    letter-spacing: -0.04em !important;
-    margin-bottom: 1.5rem !important;
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    color: var(--rh-dark);
+    letter-spacing: -0.04em;
+    margin-bottom: 1.5rem;
 }
 
-h1 { font-size: 4rem !important; line-height: 1.1 !important; }
+h1 { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; }
 
 a {
-    color: var(--rh-red) !important;
-    text-decoration: none !important;
-    transition: var(--transition-standard) !important;
+    color: var(--rh-red);
+    text-decoration: none;
+    transition: var(--transition);
 }
+a:hover { color: var(--rh-red-alt); }
 
-a:hover {
-    color: var(--rh-red-alt) !important;
-}
+::selection { background: var(--rh-red); color: #fff; }
+
+/* ==========================================================================
+   SCROLLBAR
+   ========================================================================== */
+
+::-webkit-scrollbar          { width: 8px; }
+::-webkit-scrollbar-track    { background: #f1f1f1; }
+::-webkit-scrollbar-thumb    { background: var(--rh-dark); }
+::-webkit-scrollbar-thumb:hover { background: var(--rh-red); }
+
+/* ==========================================================================
+   NAVBAR
+   ========================================================================== */
 
 .navbar {
     background-color: rgba(21, 21, 21, 0.98) !important;
     backdrop-filter: blur(12px) !important;
     border: none !important;
     padding: 1rem 0 !important;
-    transition: var(--transition-standard) !important;
+    transition: var(--transition) !important;
 }
 
 .navbar-brand {
@@ -56,36 +79,91 @@ a:hover {
     letter-spacing: 2px !important;
 }
 
+/* Nav link con línea roja animada desde la izquierda */
 .navbar-nav li a {
+    position: relative;
     color: #cccccc !important;
     font-weight: 500 !important;
     font-size: 0.9rem !important;
     text-transform: uppercase !important;
     letter-spacing: 1px !important;
+    padding-bottom: 4px !important;
+}
+
+.navbar-nav li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--rh-red);
+    transition: width 0.3s var(--ease-out-expo);
 }
 
 .navbar-nav li a:hover {
-    color: var(--rh-red) !important;
+    color: #ffffff !important;
 }
+.navbar-nav li a:hover::after { width: 100%; }
+
+/* ==========================================================================
+   HERO BACKGROUND
+   ========================================================================== */
 
 .background-color-layer {
     background: radial-gradient(circle at 0% 0%, #3c3c3c 0%, #151515 100%) !important;
     height: 500px !important;
 }
 
+/* ==========================================================================
+   LAYOUT
+   ========================================================================== */
+
 .section-container {
     padding: 100px 0 !important;
 }
 
+/* Imagen de perfil / "Sobre mí" — no debe comportarse como banner */
+.section-container:first-of-type > .container img {
+    max-width: 350px;
+    max-height: 350px;
+    border-radius: 8px;
+    margin: 0 auto;
+    display: block;
+    box-shadow: 20px 20px 0px var(--rh-red);
+}
+
+/* ==========================================================================
+   CARDS
+   Single source of truth — sin duplicados.
+   ========================================================================== */
+
 .card {
+    position: relative;
     background: #ffffff !important;
     border: 1px solid #e1e4e8 !important;
     border-radius: 4px !important;
     padding: 45px !important;
     margin-bottom: 40px !important;
     box-shadow: var(--card-shadow) !important;
-    transition: var(--transition-standard) !important;
     overflow: hidden !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    min-height: 520px !important;
+
+    transition: transform 0.4s var(--ease-out-expo),
+                box-shadow 0.4s var(--ease-out-expo),
+                border-color 0.4s var(--ease-out-expo) !important;
+}
+
+/* Línea roja inferior que "crece" en hover */
+.card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 3px;
+    background: var(--rh-red);
+    transition: width 0.45s var(--ease-out-expo);
 }
 
 .card:hover {
@@ -93,6 +171,60 @@ a:hover {
     box-shadow: var(--card-shadow-hover) !important;
     border-color: var(--rh-red) !important;
 }
+.card:hover::after { width: 100%; }
+
+/* Imagen dentro de la card — ocupa el ancho completo (compensa el padding) */
+.card img,
+.template-example img {
+    width: calc(100% + 90px) !important;    /* compensa padding: 45px a cada lado */
+    height: 220px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    border-radius: 4px 4px 0 0 !important;
+    margin: -45px -45px 25px -45px !important;
+    border-bottom: 2px solid var(--rh-red) !important;
+    filter: grayscale(20%) brightness(95%);
+    transition: filter 0.4s ease, transform 0.4s var(--ease-out-expo) !important;
+}
+
+.card:hover img {
+    filter: grayscale(0%) brightness(100%);
+    transform: scale(1.04) !important;
+}
+
+/* Tipografía interna */
+.card h3 {
+    font-size: 1.5rem !important;
+    margin-bottom: 15px !important;
+    color: var(--rh-red) !important;
+    font-weight: 700 !important;
+    transition: letter-spacing 0.3s ease !important;
+}
+.card:hover h3 { letter-spacing: -0.02em !important; }
+
+.card p {
+    font-size: 0.9rem !important;
+    line-height: 1.6 !important;
+    color: var(--text-muted) !important;
+    flex-grow: 1;
+}
+
+.card .btn { align-self: flex-start; margin-top: 20px; }
+
+/* Logos / iconos dentro de cards — nunca se tratan como banners */
+.icon-container img {
+    max-height: 60px !important;
+    width: auto !important;
+    margin-bottom: 15px !important;
+    box-shadow: none !important;
+    border: none !important;
+    filter: none !important;
+    transform: none !important;
+}
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
 
 .btn-primary {
     background-color: var(--rh-red) !important;
@@ -103,14 +235,15 @@ a:hover {
     font-size: 0.85rem !important;
     text-transform: uppercase !important;
     letter-spacing: 1.5px !important;
-    box-shadow: 0 4px 0px #b30000 !important;
-    transition: all 0.2s ease !important;
+    box-shadow: 0 4px 0 #b30000 !important;
+    transition: background-color 0.2s ease,
+                transform 0.15s ease,
+                box-shadow 0.15s ease !important;
 }
-
 .btn-primary:hover {
     background-color: var(--rh-red-alt) !important;
     transform: translateY(2px) !important;
-    box-shadow: 0 2px 0px #8a0000 !important;
+    box-shadow: 0 2px 0 var(--rh-red-deep) !important;
 }
 
 .btn-default {
@@ -119,20 +252,40 @@ a:hover {
     color: var(--rh-dark) !important;
     font-weight: 700 !important;
     border-radius: 2px !important;
+    transition: background-color 0.25s ease,
+                color 0.25s ease,
+                border-color 0.25s ease !important;
 }
+.btn-default:hover {
+    background-color: var(--rh-dark) !important;
+    color: #fff !important;
+    border-color: var(--rh-dark) !important;
+}
+
+/* ==========================================================================
+   CODE / TERMINAL
+   ========================================================================== */
 
 pre, code, .terminal-container {
     font-family: 'JetBrains Mono', monospace !important;
-    background-color: var(--terminal-black) !important;
+    background-color: var(--terminal-bg) !important;
     color: #ffffff !important;
     padding: 25px !important;
     border-radius: 4px !important;
     border-left: 6px solid var(--rh-red) !important;
     font-size: 0.95rem !important;
     line-height: 1.7 !important;
-    box-shadow: inset 0 2px 10px rgba(0,0,0,0.5) !important;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5) !important;
     margin: 30px 0 !important;
+    transition: border-color 0.3s ease !important;
 }
+pre:hover, code:hover, .terminal-container:hover {
+    border-left-color: var(--rh-red-alt) !important;
+}
+
+/* ==========================================================================
+   TABLE
+   ========================================================================== */
 
 .table {
     width: 100% !important;
@@ -157,10 +310,25 @@ pre, code, .terminal-container {
     border-bottom: 1px solid #eee !important;
     padding: 20px !important;
     font-size: 0.95rem !important;
+    transition: background-color 0.2s ease !important;
 }
 
-.table tbody tr td:first-child { border-left: 1px solid #eee !important; border-radius: 4px 0 0 4px !important; font-weight: 700 !important; }
-.table tbody tr td:last-child { border-right: 1px solid #eee !important; border-radius: 0 4px 4px 0 !important; }
+.table tbody tr:hover td { background-color: #fff5f5 !important; }
+
+.table tbody tr td:first-child {
+    border-left: 1px solid #eee !important;
+    border-radius: 4px 0 0 4px !important;
+    font-weight: 700 !important;
+}
+.table tbody tr td:last-child {
+    border-right: 1px solid #eee !important;
+    border-radius: 0 4px 4px 0 !important;
+}
+.table tbody tr:hover td:first-child { border-left-color: var(--rh-red) !important; }
+
+/* ==========================================================================
+   SOCIAL ICONS
+   ========================================================================== */
 
 .social-round-icon {
     width: 50px !important;
@@ -169,15 +337,21 @@ pre, code, .terminal-container {
     border: 1px solid #ddd !important;
     color: var(--rh-dark) !important;
     font-size: 1.2rem !important;
-    transition: var(--transition-standard) !important;
+    transition: background-color 0.35s var(--ease-out-expo),
+                color 0.35s ease,
+                border-color 0.35s ease,
+                transform 0.6s var(--ease-out-expo) !important;
 }
-
 .social-round-icon:hover {
     background-color: var(--rh-red) !important;
     color: #ffffff !important;
     border-color: var(--rh-red) !important;
     transform: rotate(360deg) !important;
 }
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
 
 footer {
     background-color: #ffffff !important;
@@ -186,148 +360,32 @@ footer {
     color: var(--text-muted) !important;
 }
 
+/* ==========================================================================
+   SCROLL REVEAL
+   ========================================================================== */
+
 .reveal {
     opacity: 0;
     transform: translateY(30px);
-    transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: opacity 0.8s var(--ease-out-expo),
+                transform 0.8s var(--ease-out-expo);
 }
-
 .reveal.visible {
     opacity: 1;
     transform: translateY(0);
 }
 
-::selection {
-    background: var(--rh-red);
-    color: #fff;
-}
-
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #f1f1f1; }
-::-webkit-scrollbar-thumb { background: var(--rh-dark); }
-::-webkit-scrollbar-thumb:hover { background: var(--rh-red); }
-
 /* ==========================================================================
-   IMAGE ARCHITECTURE & SCALING CONTROL
+   RESPONSIVE
    ========================================================================== */
 
-/* Contenedor de imagen para evitar desbordamientos */
-.card-image-container, 
-.template-example img, 
-.card img {
-    max-width: 100% !important;
-    height: auto !important;
-    display: block;
-    margin: 0 auto 25px auto !important;
-    border-radius: 4px !important;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
-    transition: var(--transition-standard) !important;
-    border: 1px solid #eee !important;
-    /* Limitamos la altura máxima para que no ocupen toda la pantalla */
-    max-height: 250px !important; 
-    object-fit: cover !important; /* Mantiene la proporción sin deformar */
-}
-
-/* Efecto de zoom interno al hacer hover en la Card */
-.card:hover img {
-    transform: scale(1.03) !important;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
-    border-color: var(--rh-red) !important;
-}
-
-/* Ajuste específico para logos o iconos pequeños si los tienes */
-.icon-container img {
-    max-height: 60px !important;
-    width: auto !important;
-    margin-bottom: 15px !important;
-    box-shadow: none !important;
-    border: none !important;
-}
-
-/* Fix para imágenes en dispositivos móviles */
 @media (max-width: 768px) {
-    .card img {
-        max-height: 200px !important;
+    .card img,
+    .template-example img {
+        height: 180px !important;
     }
-}
 
-/* ==========================================================================
-   CORRECCIÓN DE ESPACIADO DE TEXTO (Para que no quede pegado a la imagen)
-   ========================================================================== */
-
-.card h3, .card h4 {
-    margin-top: 10px !important;
-    padding-top: 0 !important;
-}
-
-.card p {
-    font-size: 0.95rem !important;
-    color: var(--text-muted) !important;
-    line-height: 1.8 !important;
-}
-/* ==========================================================================
-   ENGINEERING PRECISION: IMAGE & CARD ARCHITECTURE
-   ========================================================================== */
-
-/* 1. Normalización de imágenes en Cards */
-.template-example img, 
-.card img, 
-.project-image {
-    width: 100% !important;
-    /* Altura fija estricta para que todas las cards midan lo mismo */
-    height: 220px !important; 
-    object-fit: cover !important; /* Recorta el exceso sin deformar */
-    object-position: center !important;
-    border-radius: 4px 4px 0 0 !important; /* Redondeado solo arriba */
-    margin: -45px -45px 25px -45px !important; /* Expande la imagen al borde de la card */
-    width: calc(100% + 90px) !important; /* Compensa el padding de la card */
-    border-bottom: 2px solid var(--rh-red) !important;
-    filter: grayscale(20%) brightness(95%);
-    transition: var(--transition-standard) !important;
-}
-
-/* 2. Fix para la imagen de "Sobre mí" (The North Face en tu captura) */
-/* Si esa imagen es tu perfil o logo, no debe ser un banner gigante */
-.section-container:first-of-type img {
-    max-width: 350px !important;
-    max-height: 350px !important;
-    border-radius: 8px !important;
-    margin: 0 auto !important;
-    box-shadow: 20px 20px 0px var(--rh-red); /* Efecto de diseño moderno */
-    border: none !important;
-}
-
-/* 3. Refinamiento de la Card para albergar la imagen al borde */
-.card {
-    padding: 45px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-start !important;
-    min-height: 520px !important; /* Todas las cards tendrán la misma altura mínima */
-}
-
-.card:hover img {
-    filter: grayscale(0%) brightness(100%);
-    transform: scale(1.05) !important;
-}
-
-/* 4. Tipografía: Ajuste de jerarquía para que el texto respire */
-.card h3 {
-    font-size: 1.5rem !important;
-    margin-bottom: 15px !important;
-    color: var(--rh-red) !important;
-    font-weight: 700 !important;
-}
-
-.card p {
-    font-size: 0.9rem !important;
-    line-height: 1.6 !important;
-    color: var(--text-muted) !important;
-    flex-grow: 1; /* Empuja el botón hacia abajo para alinearlos todos */
-}
-
-/* 5. Botones alineados al fondo de la card */
-.card .btn {
-    align-self: flex-start;
-    margin-top: 20px;
+    .card {
+        min-height: auto !important;
+    }
 }

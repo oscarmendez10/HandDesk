@@ -191,3 +191,19 @@
 footer, .social-buttons a {
     color: #304553 !important;
 }
+/* FUERZA BRUTA: Selector Universal de Identidad */
+html body .card, 
+div.card, 
+.card[class*="card"] {
+    transform: scale(0.9) !important;
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+    box-shadow: none !important;
+    border: 5px solid #304553 !important; /* Borde grueso para ver si reacciona */
+}
+
+html body .card:hover, 
+div.card:hover {
+    transform: translateY(-20px) scale(1.15) !important;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6) !important;
+    border-color: #000 !important;
+}

@@ -1,142 +1,54 @@
-/* JUAN DAVID FERRER - PROFESSIONAL STACK CSS 
-   Optimizado para: Rápida carga (<1s), Identidad Red Hat y Minimalismo Técnico.
-*/
-
+/* ==========================================================================
+   JUAN DAVID FERRER - RED HAT ENGINEER OVERRIDES
+   Añade esto AL FINAL de tu archivo original
+   ========================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono&display=swap');
-@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
-:root {
-    --red-hat: #EE0000;
-    --dark-bg: #151515;
-    --card-bg: #ffffff;
-    --text-main: #1a1a1a;
-    --text-muted: #6a737d;
-    --terminal-green: #27ae60;
+body, p, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', -apple-system, sans-serif !important;
 }
 
-body {
-    font-family: 'Inter', -apple-system, sans-serif;
-    color: var(--text-main);
-    background-color: #f8f9fa;
-    line-height: 1.6;
-    margin: 0;
-    -webkit-font-smoothing: antialiased;
+code, .terminal, pre {
+    font-family: 'JetBrains Mono', monospace !important;
+    background-color: #f4f4f4;
+    color: #EE0000;
 }
 
-/* Identidad Visual Superior */
-h1, h2, h3 {
-    font-weight: 700;
-    color: var(--dark-bg);
-    letter-spacing: -0.02em;
-}
-
+/* Red Hat Primary Color */
 a {
-    color: var(--red-hat);
-    text-decoration: none;
+    color: #EE0000;
     transition: 0.2s;
 }
-
 a:hover {
-    color: #b30000;
+    color: #CC0000;
 }
 
-/* Contenedor Principal con Capa de Fondo */
-.background-color-layer {
-    height: 40vh;
-    background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
-    position: absolute;
-    width: 100%;
-    z-index: -1;
-}
-
-.content-wrapper {
-    padding-top: 60px;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-/* Cards Estilo "Enterprise" */
-.card {
-    background: var(--card-bg);
-    border: 1px solid #e1e4e8;
-    border-radius: 8px;
-    padding: 30px;
-    margin-bottom: 24px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-}
-
-/* Tipografía Técnica (Mono) */
-code, .terminal-text {
-    font-family: 'JetBrains Mono', monospace;
-    background: #f1f1f1;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-size: 0.9em;
-    color: var(--red-hat);
-}
-
-/* Botones con Estética de Red Hat */
 .btn-primary {
-    background-color: var(--red-hat) !important;
-    border: none !important;
-    border-radius: 4px;
-    padding: 12px 24px;
-    font-weight: 700;
+    background-color: #EE0000 !important;
+    border-color: #EE0000 !important;
+    font-weight: bold;
     text-transform: uppercase;
-    font-size: 13px;
-    letter-spacing: 1px;
     transition: 0.3s;
 }
-
-.btn-primary:hover {
-    background-color: #b30000 !important;
+.btn-primary:hover, .btn-primary:focus {
+    background-color: #CC0000 !important;
+    border-color: #CC0000 !important;
     box-shadow: 0 4px 12px rgba(238, 0, 0, 0.3);
 }
 
-/* Tabla de Certificaciones (Limpia) */
-.table {
-    width: 100%;
-    margin-top: 15px;
-    border-collapse: collapse;
+/* Clean Enterprise Cards */
+.card {
+    border: 1px solid #e1e4e8 !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1) !important;
 }
 
-.table th {
-    text-align: left;
-    color: var(--text-muted);
-    font-size: 12px;
-    text-transform: uppercase;
-    padding: 10px;
-    border-bottom: 2px solid #eee;
+/* Ajuste del fondo oscuro para la cabecera */
+.background-color-layer {
+    background-color: #1a1a1a !important;
+    background-image: none !important;
 }
-
-.table td {
-    padding: 15px 10px;
-    border-bottom: 1px solid #eee;
-    font-size: 14px;
-}
-
-/* Status Labels */
-.btn-info { background: #007bff; color: white; border: none; font-size: 11px; pointer-events: none; }
-.btn-success { background: var(--terminal-green); color: white; border: none; font-size: 11px; }
-
-/* Responsive */
-@media (max-width: 768px) {
-    .content-wrapper { padding: 20px; }
-    .card { padding: 20px; }
-}
-
-/* Footer Minimalista */
-footer {
-    padding: 40px 0;
-    color: var(--text-muted);
-    font-size: 13px;
-}
-
-/* ScrollReveal Animation placeholder */
-.card { visibility: hidden; }

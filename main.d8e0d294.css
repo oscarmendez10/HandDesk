@@ -198,7 +198,7 @@ footer, .social-buttons a {
 }
 
 .card:hover {
-    transform: translateY(-10px) scale(1.05) !important; /* Forzamos el crecimiento */
+    transform: translateY(-10px) scale(0.9) !important; /* Forzamos el crecimiento */
     box-shadow: 0 20px 50px rgba(0,0,0,0.5) !important;
     z-index: 999 !important;
 }

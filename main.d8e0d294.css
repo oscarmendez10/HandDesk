@@ -49,24 +49,21 @@
    CARDS: Tamaño reducido + Crecimiento dinámico + Sombra Profunda
    -------------------------------------------------------------------------- */
 
-/* 1. ESTADO INICIAL: Forzamos el tamaño pequeño */
+/* 1. ESTADO INICIAL: Menos pequeña */
 html body .card, 
 html body .card[style] {
-    transform: scale(0.9) !important; 
-    transition: transform 0.5s var(--ease-expo), 
-                box-shadow 0.5s var(--ease-expo) !important;
-    backface-visibility: hidden;
+    transform: scale(0.97) !important; /* Solo un 3% más pequeña que el original */
+    transition: transform 0.4s var(--ease-expo), 
+                box-shadow 0.4s var(--ease-expo) !important;
 }
 
-/* 2. ESTADO HOVER: Forzamos el crecimiento real */
+/* 2. ESTADO HOVER: Crecimiento elegante */
 html body .card:hover {
-    /* Si quieres que se note MUCHO el cambio, usamos 1.1 */
-    transform: translateY(-15px) scale(1.1) !important; 
-    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5) !important;
+    /* De 0.97 a 1.03 es un crecimiento total del 6%. Es el "Sweet Spot" */
+    transform: translateY(-8px) scale(1.03) !important; 
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4) !important;
     z-index: 9999 !important;
-    position: relative;
 }
-
 /* --------------------------------------------------------------------------
    BOTONES: press effect btn-primary, hover btn-default
    -------------------------------------------------------------------------- */
@@ -191,19 +188,18 @@ footer, .social-buttons a {
 
 
 /* 1. ESTADO INICIAL: Forzamos el tamaño pequeño */
+/* 1. ESTADO INICIAL: Menos pequeña */
 html body .card, 
 html body .card[style] {
-    transform: scale(0.9) !important; 
-    transition: transform 0.5s var(--ease-expo), 
-                box-shadow 0.5s var(--ease-expo) !important;
-    backface-visibility: hidden;
+    transform: scale(0.97) !important; /* Solo un 3% más pequeña que el original */
+    transition: transform 0.4s var(--ease-expo), 
+                box-shadow 0.4s var(--ease-expo) !important;
 }
 
-/* 2. ESTADO HOVER: Forzamos el crecimiento real */
+/* 2. ESTADO HOVER: Crecimiento elegante */
 html body .card:hover {
-    /* Si quieres que se note MUCHO el cambio, usamos 1.1 */
-    transform: translateY(-15px) scale(1.1) !important; 
-    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5) !important;
+    /* De 0.97 a 1.03 es un crecimiento total del 6%. Es el "Sweet Spot" */
+    transform: translateY(-8px) scale(1.03) !important; 
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4) !important;
     z-index: 9999 !important;
-    position: relative;
 }

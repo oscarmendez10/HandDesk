@@ -206,3 +206,62 @@ footer {
 ::-webkit-scrollbar-track { background: #f1f1f1; }
 ::-webkit-scrollbar-thumb { background: var(--rh-dark); }
 ::-webkit-scrollbar-thumb:hover { background: var(--rh-red); }
+
+/* ==========================================================================
+   IMAGE ARCHITECTURE & SCALING CONTROL
+   ========================================================================== */
+
+/* Contenedor de imagen para evitar desbordamientos */
+.card-image-container, 
+.template-example img, 
+.card img {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block;
+    margin: 0 auto 25px auto !important;
+    border-radius: 4px !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+    transition: var(--transition-standard) !important;
+    border: 1px solid #eee !important;
+    /* Limitamos la altura máxima para que no ocupen toda la pantalla */
+    max-height: 250px !important; 
+    object-fit: cover !important; /* Mantiene la proporción sin deformar */
+}
+
+/* Efecto de zoom interno al hacer hover en la Card */
+.card:hover img {
+    transform: scale(1.03) !important;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+    border-color: var(--rh-red) !important;
+}
+
+/* Ajuste específico para logos o iconos pequeños si los tienes */
+.icon-container img {
+    max-height: 60px !important;
+    width: auto !important;
+    margin-bottom: 15px !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* Fix para imágenes en dispositivos móviles */
+@media (max-width: 768px) {
+    .card img {
+        max-height: 200px !important;
+    }
+}
+
+/* ==========================================================================
+   CORRECCIÓN DE ESPACIADO DE TEXTO (Para que no quede pegado a la imagen)
+   ========================================================================== */
+
+.card h3, .card h4 {
+    margin-top: 10px !important;
+    padding-top: 0 !important;
+}
+
+.card p {
+    font-size: 0.95rem !important;
+    color: var(--text-muted) !important;
+    line-height: 1.8 !important;
+}

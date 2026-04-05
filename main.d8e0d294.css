@@ -55,19 +55,8 @@
                 border-color 0.4s var(--ease-expo);
 }
 
-.card::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 3px;
-    background: var(--rh-red);
-    transition: width 0.45s var(--ease-expo);
-}
-
 .card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-8px) scale(1.03);
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35), 0 4px 12px rgba(238, 0, 0, 0.15);
     border-color: var(--rh-red);
 }

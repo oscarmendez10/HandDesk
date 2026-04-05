@@ -145,3 +145,40 @@
     background: var(--rh-red);
     color: #fff;
 }
+/* 1. Limpieza total del botón */
+.btn-primary, #enviar-mensaje, button[type="submit"] {
+    background: #304553 !important; /* Tu azul oscuro sólido */
+    background-image: none !important;
+    border: none !important;
+    color: #ffffff !important;
+    border-radius: 4px !important;
+    padding: 12px 24px !important;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: none !important;
+    transition: background 0.3s ease !important;
+}
+
+.btn-primary:hover {
+    background: #1a262f !important; /* Un azul más profundo al pasar el mouse */
+}
+
+/* 2. Formulario más limpio (Menos gris sucio) */
+.form-control {
+    background-color: #f9f9f9 !important; /* Un gris casi blanco, mucho más limpio */
+    border: 1px solid #ddd !important;
+    border-radius: 2px !important;
+    color: #333 !important;
+    box-shadow: none !important;
+}
+
+.form-control:focus {
+    border-color: #304553 !important; /* El borde se ilumina con tu azul al escribir */
+    background-color: #fff !important;
+}
+
+/* 3. El footer y los iconos */
+footer, .social-buttons a {
+    color: #304553 !important;
+}

@@ -61,7 +61,7 @@
 
 .card:hover {
     /* Estado activo: Crece significativamente y sube */
-    transform: translateY(-15px) scale(1.08) !important; 
+    transform: translateY(-10px) scale(1.05) !important; 
     
     /* SOMBRA NEGRA EXTRA FUERTE Y LARGA (Sin rojos) */
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5),  /* Base muy oscura */

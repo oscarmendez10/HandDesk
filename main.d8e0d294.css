@@ -46,20 +46,30 @@
 }
 
 /* --------------------------------------------------------------------------
-   CARDS: elevación + línea roja inferior
+   CARDS: Tamaño reducido + Crecimiento dinámico + Sombra Profunda
    -------------------------------------------------------------------------- */
 
+.card {
+    /* Estado inicial: un poco más pequeña y limpia */
+    transform: scale(0.95); 
+    transition: transform 0.5s var(--ease-expo), 
+                box-shadow 0.5s var(--ease-expo), 
+                border-color 0.5s var(--ease-expo) !important;
+    border: 1px solid #eee;
+    background-color: #fff;
+}
+
 .card:hover {
-    transform: translateY(-12px) scale(1.02); /* Sube un poco más (12px) para dar espacio a la sombra larga */
+    /* Estado activo: Crece significativamente y sube */
+    transform: translateY(-15px) scale(1.08) !important; 
     
-    /* SOMBRA NEGRA FUERTE Y LARGA */
-    /* 1. Sombra de contacto (oscura y cercana) */
-    /* 2. Sombra de profundidad (difuminada y extensa) */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), 
-                0 30px 70px rgba(0, 0, 0, 0.35) !important;
+    /* SOMBRA NEGRA EXTRA FUERTE Y LARGA (Sin rojos) */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5),  /* Base muy oscura */
+                0 40px 100px rgba(0, 0, 0, 0.4) !important; /* Estela larga */
                 
-    border-color: #304553 !important; /* Cambiamos el rojo por tu azul oscuro */
-    z-index: 10;
+    border-color: #304553 !important; 
+    z-index: 50; /* Asegura que al crecer no se tape con otras tarjetas */
+    position: relative;
 }
 
 /* --------------------------------------------------------------------------

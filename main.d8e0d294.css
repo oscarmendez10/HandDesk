@@ -265,3 +265,69 @@ footer {
     color: var(--text-muted) !important;
     line-height: 1.8 !important;
 }
+/* ==========================================================================
+   ENGINEERING PRECISION: IMAGE & CARD ARCHITECTURE
+   ========================================================================== */
+
+/* 1. Normalización de imágenes en Cards */
+.template-example img, 
+.card img, 
+.project-image {
+    width: 100% !important;
+    /* Altura fija estricta para que todas las cards midan lo mismo */
+    height: 220px !important; 
+    object-fit: cover !important; /* Recorta el exceso sin deformar */
+    object-position: center !important;
+    border-radius: 4px 4px 0 0 !important; /* Redondeado solo arriba */
+    margin: -45px -45px 25px -45px !important; /* Expande la imagen al borde de la card */
+    width: calc(100% + 90px) !important; /* Compensa el padding de la card */
+    border-bottom: 2px solid var(--rh-red) !important;
+    filter: grayscale(20%) brightness(95%);
+    transition: var(--transition-standard) !important;
+}
+
+/* 2. Fix para la imagen de "Sobre mí" (The North Face en tu captura) */
+/* Si esa imagen es tu perfil o logo, no debe ser un banner gigante */
+.section-container:first-of-type img {
+    max-width: 350px !important;
+    max-height: 350px !important;
+    border-radius: 8px !important;
+    margin: 0 auto !important;
+    box-shadow: 20px 20px 0px var(--rh-red); /* Efecto de diseño moderno */
+    border: none !important;
+}
+
+/* 3. Refinamiento de la Card para albergar la imagen al borde */
+.card {
+    padding: 45px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    min-height: 520px !important; /* Todas las cards tendrán la misma altura mínima */
+}
+
+.card:hover img {
+    filter: grayscale(0%) brightness(100%);
+    transform: scale(1.05) !important;
+}
+
+/* 4. Tipografía: Ajuste de jerarquía para que el texto respire */
+.card h3 {
+    font-size: 1.5rem !important;
+    margin-bottom: 15px !important;
+    color: var(--rh-red) !important;
+    font-weight: 700 !important;
+}
+
+.card p {
+    font-size: 0.9rem !important;
+    line-height: 1.6 !important;
+    color: var(--text-muted) !important;
+    flex-grow: 1; /* Empuja el botón hacia abajo para alinearlos todos */
+}
+
+/* 5. Botones alineados al fondo de la card */
+.card .btn {
+    align-self: flex-start;
+    margin-top: 20px;
+}

@@ -14,144 +14,116 @@
    ========================================================================== */
 
 :root {
-    --rh-red:    #EE0000;
+    --rh-red:      #EE0000;
     --rh-red-deep: #8a0000;
-    --ease-expo: cubic-bezier(0.165, 0.84, 0.44, 1);
-    --navy-blue: #304553;
-    --navy-dark: #1a262f;
+    --navy-blue:   #304553;
+    --navy-dark:   #1a262f;
+    /* Curva refinada para sensaciones orgánicas */
+    --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* --------------------------------------------------------------------------
-   NAV: línea roja que crece de izquierda a derecha
-   -------------------------------------------------------------------------- */
+/* 1. NAV: Indicador magnético */
 .navbar-nav > li > a {
     position: relative;
-    padding-bottom: 4px;
+    overflow: hidden; /* Evita fugas visuales */
 }
 
 .navbar-nav > li > a::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: 50%; /* Inicia desde el centro para mayor dinamismo */
     width: 0;
-    height: 2px;
+    height: 3px;
     background: var(--rh-red);
-    transition: width 0.3s var(--ease-expo);
+    transition: width 0.4s var(--ease-out-expo), left 0.4s var(--ease-out-expo);
 }
 
 .navbar-nav > li > a:hover::after,
 .navbar-nav > li.active > a::after {
     width: 100%;
+    left: 0;
 }
 
-/* --------------------------------------------------------------------------
-   CARDS: Sistema Anti-Conflicto (0.97 a 1.03)
-   -------------------------------------------------------------------------- */
+/* 2. CARDS: Elevación Cinética */
 .card {
-    transform: scale(0.97);
-    transition: transform 0.4s var(--ease-expo), 
-                box-shadow 0.4s var(--ease-expo),
-                border-color 0.4s ease;
-    backface-visibility: hidden;
-    will-change: transform, box-shadow;
-    border: 1px solid #eee;
+    transform: translateY(0);
+    transition: 
+        transform 0.5s var(--ease-out-expo), 
+        box-shadow 0.5s var(--ease-out-expo),
+        border-color 0.3s ease;
+    will-change: transform;
 }
 
 .card:hover {
-    transform: translateY(-8px) scale(1.03);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4),
-                0 5px 10px rgba(0, 0, 0, 0.2);
-    border-color: var(--navy-blue);
-    z-index: 100;
+    transform: translateY(-12px); /* Más pronunciado */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-color: var(--rh-red); /* Cambio de color sutil pero agresivo */
 }
 
-.card:active {
-    transform: translateY(-2px) scale(1);
-    transition-duration: 0.1s;
+/* 3. BOTONES: Efecto de Presión Realista */
+.btn-primary, #enviar-mensaje, button[type="submit"] {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s var(--ease-out-expo);
+    z-index: 1;
 }
 
-/* --------------------------------------------------------------------------
-   BOTONES Y FORMULARIOS: Identidad Profesional
-   -------------------------------------------------------------------------- */
-.btn-primary,
-#enviar-mensaje,
-button[type="submit"] {
-    background: var(--navy-blue);
-    background-image: none;
-    border: none;
-    color: #ffffff;
-    border-radius: 4px;
-    padding: 12px 24px;
-    text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: 1px;
-    transition: background 0.3s ease, transform 0.1s ease;
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 0%; height: 100%;
+    background: rgba(255,255,255,0.1);
+    transition: width 0.3s ease;
+    z-index: -1;
 }
 
-.btn-primary:hover,
-#enviar-mensaje:hover,
-button[type="submit"]:hover {
-    background: var(--navy-dark);
+.btn-primary:hover::before {
+    width: 100%;
 }
 
-.btn-primary:active,
-#enviar-mensaje:active,
-button[type="submit"]:active {
-    transform: scale(0.96);
+.btn-primary:active {
+    transform: scale(0.95); /* Feedback táctil inmediato */
 }
 
+/* 4. FORMULARIOS: Focus de Precisión */
 .form-control {
-    background-color: #f9f9f9;
+    transition: all 0.3s var(--ease-out-expo);
     border: 1px solid #ddd;
-    border-radius: 2px;
-    color: #333;
 }
 
 .form-control:focus {
-    border-color: var(--navy-blue);
-    background-color: #fff;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px rgba(102, 175, 233, 0.3);
+    border-color: var(--rh-red);
+    box-shadow: 0 0 0 3px rgba(238, 0, 0, 0.1); /* Anillo de enfoque moderno */
+    transform: translateX(4px); /* Micro-desplazamiento para llamar la atención */
 }
 
-/* --------------------------------------------------------------------------
-   TABLA, ICONOS Y FOOTER
-   -------------------------------------------------------------------------- */
+/* 5. TABLAS: Feedback Progresivo */
 .table > tbody > tr {
-    transition: background-color 0.2s ease;
+    cursor: pointer;
+    transition: transform 0.2s ease;
 }
 
-.table > tbody > tr:hover > td {
-    background-color: #fff5f5 !important;
+.table > tbody > tr:hover {
+    transform: scale(1.01);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-.table > tbody > tr:hover > td:first-child {
-    border-left: 3px solid var(--rh-red);
+.table > tbody > tr td {
+    transition: all 0.3s ease;
 }
 
+.table > tbody > tr:hover td {
+    background-color: #fff !important;
+    color: var(--rh-red);
+}
+
+/* 6. ICONOS: Rotación Inteligente */
 .social-round-icon {
-    transition: all 0.6s var(--ease-expo);
+    transition: transform 0.6s var(--ease-out-expo), background 0.3s ease;
 }
 
 .social-round-icon:hover {
-    transform: rotate(360deg);
+    transform: rotate(15deg) scale(1.2); /* Menos mareante, más enfocado */
     background-color: var(--rh-red);
-    color: #fff;
-}
-
-footer, .social-buttons a {
-    color: var(--navy-blue); /* Sin !important para no romper hovers */
-}
-
-/* --------------------------------------------------------------------------
-   SCROLLBAR Y SELECCIÓN
-   -------------------------------------------------------------------------- */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #f1f1f1; }
-::-webkit-scrollbar-thumb { background: #333; }
-::-webkit-scrollbar-thumb:hover { background: var(--rh-red); }
-
-::selection {
-    background: var(--rh-red);
-    color: #fff;
 }

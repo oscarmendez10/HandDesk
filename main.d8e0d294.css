@@ -61,18 +61,20 @@
     will-change: transform;
     z-index: 1;
 }
-
-.card:hover {
-    /* Estado activo: prioridad máxima */
-    transform: scale(1.05) translateY(-5px) !important; 
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    border-color: var(--rh-red);
-    z-index: 10; /* Se asegura de estar por encima de las otras cards */
+/* Forzamos que el estado inicial sea 0.95 */
+body .card {
+    display: block !important;
+    transform: scale(0.95) !important;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+    backface-visibility: hidden;
+    will-change: transform;
 }
 
-.card:active {
-    transform: scale(1) !important;
-    transition-duration: 0.1s !important;
+/* Forzamos el aumento a 1.05 al pasar el cursor */
+body .card:hover {
+    transform: scale(1.05) translateY(-10px) !important;
+    z-index: 999 !important;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3) !important;
 }
 /* 3. BOTONES: Efecto de Presión Realista */
 .btn-primary, #enviar-mensaje, button[type="submit"] {

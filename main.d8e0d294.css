@@ -36,7 +36,7 @@
     width: 0;
     height: 3px;
     background: var(--rh-red);
-    transition: width 0.4s var(--ease-out-expo), left 0.4s var(--ease-out-expo);
+    transition: width 0.7s var(--ease-out-expo), left 0.4s var(--ease-out-expo);
 }
 
 .navbar-nav > li > a:hover::after,

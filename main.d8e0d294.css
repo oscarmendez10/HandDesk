@@ -46,21 +46,34 @@
 }
 
 /* 2. CARDS: Elevación Cinética */
+/* --------------------------------------------------------------------------
+   CARDS: Corrección de jerarquía y estados
+   -------------------------------------------------------------------------- */
 .card {
-    transform: translateY(0);
-    transition: 
-        transform 0.5s var(--ease-out-expo), 
-        box-shadow 0.5s var(--ease-out-expo),
-        border-color 0.3s ease;
+    /* Estado base: forzamos el escalado inicial */
+    transform: scale(0.95) !important; 
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                box-shadow 0.4s ease,
+                border-color 0.3s ease !important;
+    
+    /* Optimización de renderizado */
+    backface-visibility: hidden;
     will-change: transform;
+    z-index: 1;
 }
 
 .card:hover {
-    transform: translateY(-12px); /* Más pronunciado */
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    border-color: var(--rh-red); /* Cambio de color sutil pero agresivo */
+    /* Estado activo: prioridad máxima */
+    transform: scale(1.05) translateY(-5px) !important; 
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    border-color: var(--rh-red);
+    z-index: 10; /* Se asegura de estar por encima de las otras cards */
 }
 
+.card:active {
+    transform: scale(1) !important;
+    transition-duration: 0.1s !important;
+}
 /* 3. BOTONES: Efecto de Presión Realista */
 .btn-primary, #enviar-mensaje, button[type="submit"] {
     position: relative;
